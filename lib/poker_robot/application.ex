@@ -11,6 +11,7 @@ defmodule PokerRobot.Application do
     children = [
       # Starts a worker by calling: PokerRobot.Worker.start_link(arg)
       # {PokerRobot.Worker, arg},
+	  supervisor(Registry, [:unique, MyRegistry], [id: MyRegistry]),
       supervisor(Robot.Supervisor, [])
     ]
 

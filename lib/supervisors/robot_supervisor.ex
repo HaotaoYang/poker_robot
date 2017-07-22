@@ -5,8 +5,8 @@ defmodule Robot.Supervisor do
     Supervisor.start_link(__MODULE__, [], name: :robot_sup)
   end
 
-  def start_child(robot_id) do
-    Supervisor.start_child(:robot_sup, [{robot_id}])
+  def start_child(robot_index) do
+    Supervisor.start_child(:robot_sup, [robot_index])
   end
 
   def init([]) do
