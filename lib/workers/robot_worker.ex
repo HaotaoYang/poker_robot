@@ -18,7 +18,7 @@ defmodule RobotWorker do
     {:ok, pid} = Client.start_link()
     {:ok, socket} = Client.connect(
 	  pid,
-      host: "127.0.0.1",
+      host: "192.168.10.244",
       port: 8888,
       path: "/socket/websocket",
       params: %{userToken: robot_index},
@@ -78,7 +78,7 @@ defmodule RobotWorker do
     state = merge_table(table_id, state)
     {:noreply, state}
   end
-  def handle_info({"action", %{"id" => id}}, %{robot_index: robot_index, robot_id: robot_id, table_channel: table_channel} = state) do
+  def handle_info({"action", %{"id" => id}}, %{robot_id: robot_id, table_channel: table_channel} = state) do
     case table_channel do
       0 ->
         :ok
@@ -92,7 +92,7 @@ defmodule RobotWorker do
     end
     {:noreply, state}
   end
-  def handle_info(msg, state) do
+  def handle_info(_msg, state) do
     # Logger.warn("robot_index: #{state.robot_index} receive an unknown info msg: #{inspect msg}")
     {:noreply, state}
   end
