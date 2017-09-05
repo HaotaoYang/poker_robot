@@ -4,8 +4,8 @@ defmodule PokerRobot.Mixfile do
   def project do
     [
       app: :poker_robot,
-      version: "0.1.0",
-      elixir: "~> 1.6-dev",
+      version: "0.0.1",
+      elixir: "~> 1.5.1",
       start_permanent: Mix.env == :prod,
       deps: deps()
     ]
